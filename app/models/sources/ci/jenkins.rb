@@ -6,7 +6,7 @@ module Sources
 
       def custom_fields
         [
-          { :name => "server_url", :title => "Server Url", :mandatory => true, :value => BackendSettings.config.jenkins["url"] },
+          { :name => "server_url", :title => "Server Url", :mandatory => true, :value => BackendSettings.config.jenkins.try(:fetch, "url") },
           { :name => "project", :title => "Project", :mandatory => true },
         ]
       end
