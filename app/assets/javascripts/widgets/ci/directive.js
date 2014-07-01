@@ -32,6 +32,7 @@ app.directive("ci", ["CiModel", function(CiModel) {
       scope.data.current_status_message = current_status_message(scope.data.current_status);
       scope.data.lastBuildStatusClass = lastBuildStatusClass(scope.data.last_build_status);
       scope.data.buildingClass = scope.data.current_status === 1 ? "building" : "";
+      scope.data.last_build_time_ago = $.timeago(scope.data.last_build_time);
     }
 
     function update() {

@@ -30,13 +30,13 @@ gem "therubyracer"
 gem "uglifier"
 
 group :test, :development do
-  gem "debugger"
   gem "rspec-rails"
   gem "factory_girl_rails"
   gem "mocha", :require => false
 end
 
 group :development do
+  gem "passenger"
   gem "better_errors"
   gem "binding_of_caller"
   gem "foreman"
@@ -46,4 +46,4 @@ group :production do
   gem 'rails_12factor' # remove if not deploying on heroku
 end
 
-ruby "2.0.0"
+ruby "2.1.1"

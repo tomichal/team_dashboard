@@ -5,5 +5,11 @@
     <div class="secondary-label" title="{{data.current_status_message}}">
       {{data.current_status_message}}
     </div>
+    <div class="secondary-label" ng-show="data.last_build_time">
+      Last build started:
+      <span class="timeago" title="{{data.last_build_time_ago}}">
+        {{data.last_build_time_ago}}
+      </span>
+    </div>
   </div>
 </div>
