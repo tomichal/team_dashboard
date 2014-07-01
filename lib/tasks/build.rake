@@ -7,7 +7,7 @@ desc "Build CI Jenkins widgets for the default projects, or update the existing 
 task build: :environment do
   dashboard = Dashboard.find_or_create_by(:name => "View")
 
-  default_settings = BackendSettings.secrets.jenkins
+  default_settings = BackendSettings.config.jenkins
 
   # all_results = Sources::Ci::Jenkins.new.request_build_status(url)
   # all_project_names = all_results["Projects"]["Project"].map { |attrs| attrs["name"] }

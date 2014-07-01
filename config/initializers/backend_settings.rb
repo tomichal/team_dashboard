@@ -14,17 +14,23 @@ require "erb"
 # gem in the future. For now I wait until Rails 4.1 is released.
 #
 module BackendSettings
-  def self.secrets
-    @secrets ||= begin
-      secrets = ActiveSupport::OrderedOptions.new
-      yaml    = Rails.root.join("config/secrets.yml")
 
-      if File.exist?(yaml)
-        env_secrets = YAML.load(ERB.new(IO.read(yaml)).result)[Rails.env]
-        secrets.merge!(env_secrets.symbolize_keys) if env_secrets
+  def self.init(settings_name)
+    define_singleton_method(settings_name) do
+      instance_variable_get("@#{settings_name}") || begin
+        settings = ActiveSupport::OrderedOptions.new
+        yaml = Rails.root.join("config/#{settings_name}.yml")
+
+        if File.exist?(yaml)
+          env_secrets = YAML.load(ERB.new(IO.read(yaml)).result)[Rails.env]
+          settings.merge!(env_secrets.symbolize_keys) if env_secrets
+        end
+        instance_variable_set("@#{settings_name}", settings)
       end
-
-      secrets
     end
+  end
+
+  [:secrets, :config].each do |settings_name|
+    init(settings_name)
   end
 end

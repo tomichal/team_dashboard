@@ -1,0 +1,15 @@
+defaults: &defaults
+  jenkins:
+    url: "https://jenkins-hzn.eng.vmware.com/jenkins/view/View/"
+    projects:
+      - view-acceptance-tests
+      - view-mfw-compile-and-unit-test
+      - view-mfw-compile-and-unit-test
+      - view-appblast-libs-compile
+      - view-cata_fw-compile
+      - view-viewvc-compile
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
