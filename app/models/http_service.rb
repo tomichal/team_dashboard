@@ -72,6 +72,25 @@ module HttpService
     connection.get.body
   end
 
+  # HACK: guarding against SSL failures and if that happens, trying to make the
+  # request without SSL certificate verification.
+  # I tried to fix the SSL issue by giving the Faraday library a concrete
+  # certificate to validate against
+  # (see: https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates),
+  # but that (and other related attempts to fix this issue, based on Google
+  # research) failed, so resolving to this hack.
+  # Otherwise a following exception may be thrown, when making requests via the
+  # HTTPS protocol:
+  # "SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed".
+  def request_with_ssl_hack(url, options = {})
+    begin
+      request_without_ssl_hack(url, options)
+    rescue
+      request_without_ssl_hack(url, options.merge(ssl: { verify: false }))
+    end
+  end
+  alias_method_chain :request, :ssl_hack
+
   # custom faraday middleware passes url along to simplify error reports
   class RaiseError < Faraday::Response::Middleware
     def on_complete(env)
