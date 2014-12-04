@@ -1,7 +1,7 @@
 app.controller("CiCtrl", ["$scope", function($scope) {
 
   var defaults = {
-    size_x: 2,
+    size_x: 1,
     size_y: 1,
     name: "CI Build Status",
     update_interval: 10,
