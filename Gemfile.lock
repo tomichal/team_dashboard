@@ -85,6 +85,8 @@ GEM
       rack
       rake (>= 0.8.1)
     polyglot (0.3.3)
+    puma (2.10.2)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -175,6 +177,7 @@ DEPENDENCIES
   newrelic_api
   nokogiri
   passenger
+  puma
   rails (~> 4.0.0)
   rails_12factor
   rspec-rails

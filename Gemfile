@@ -29,6 +29,9 @@ gem "newrelic_api"
 gem "therubyracer"
 gem "uglifier"
 
+# app server
+gem "puma"
+
 group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"
