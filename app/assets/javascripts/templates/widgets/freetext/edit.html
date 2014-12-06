@@ -2,6 +2,11 @@
   <div td-field label="Name">
     <input name="name" ng-model="widget.name" type="text" autofocus required/>
   </div>
-
+  <div td-field label="Width">
+    <input name="size_x" ng-model="widget.size_x" type="number" min="1"/>
+  </div>
+  <div td-field label="Height">
+    <input name="size_y" ng-model="widget.size_y" type="number" min="1"/>
+  </div>
   <div td-bind-html-unsafe="customFieldsTemplate"></div>
 </div>
