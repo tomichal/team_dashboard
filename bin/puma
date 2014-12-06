@@ -7,6 +7,11 @@
 
 PUMA_CONFIG_FILE=config/puma.rb
 PUMA_PID_FILE=tmp/pids/puma.pid
+if [ -n "$RAILS_ENV" ]; then
+  ENV=$RAILS_ENV
+else
+  ENV=development
+fi
 
 # check if puma process is running
 puma_is_running() {
@@ -27,9 +32,9 @@ case "$1" in
   start)
     echo "Starting puma..."
     if [ -e $PUMA_CONFIG_FILE ] ; then
-      bundle exec puma --config $PUMA_CONFIG_FILE
+      bundle exec puma -e $ENV --config $PUMA_CONFIG_FILE
     else
-      bundle exec puma --daemon -p 80 --pidfile $PUMA_PID_FILE
+      bundle exec puma -e $ENV --daemon -p 80 --pidfile $PUMA_PID_FILE
     fi
 
     echo "done"
