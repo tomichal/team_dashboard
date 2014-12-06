@@ -3,9 +3,10 @@
   position: absolute;
   margin-left: -10px; // To offset the margin of the parent
   width: 100%;
-  top: 40%;
+  top: 50%;
   h1 {
     text-align: center;
+    line-height: 0; // So that vertical centering works
   }
 }
 
