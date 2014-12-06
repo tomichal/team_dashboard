@@ -4,7 +4,6 @@ class Widget < ActiveRecord::Base
   serialize :settings
 
   validates :name, :kind, :update_interval, :dashboard_id, :presence => true
-
   validate :validate_source_attributes, if: -> { source.present? }
 
   after_initialize :set_defaults
@@ -49,6 +48,7 @@ class Widget < ActiveRecord::Base
   end
 
   def set_defaults
+    self.name ||= kind.titleize
     self.update_interval ||= 10
   end
 
