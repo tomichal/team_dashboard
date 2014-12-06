@@ -43,26 +43,7 @@ case "$1" in
     echo "done"
     ;;
 
-  restart)
-    if puma_is_running ; then
-      echo "Hot-restarting puma..."
-      kill -s SIGUSR2 `cat $PUMA_PID_FILE`
-
-      echo "Doublechecking the process restart..."
-      sleep 5
-      if puma_is_running ; then
-        echo "done"
-        exit 0
-      else
-        echo "Puma restart failed :/"
-      fi
-    fi
-
-    echo "Trying cold reboot"
-    bin/puma.sh start
-    ;;
-
   *)
-    echo "Usage: script/puma.sh {start|stop|restart}" >&2
+    echo "Usage: script/puma.sh {start|stop}" >&2
     ;;
 esac
