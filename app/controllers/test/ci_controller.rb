@@ -4,6 +4,7 @@ module Test
 
     def jenkins
       status = "Success"
+      # status = "Failure"
 
       render(xml:
         <<-XML
