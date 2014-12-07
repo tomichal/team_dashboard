@@ -11,12 +11,12 @@ module Test
 <Projects>
   <Project name="test1"
            lastBuildLabel="1"
-           lastBuildTime="2001-01-01T00:00:00Z"
+           lastBuildTime="#{Time.now - 2.hours}"
            lastBuildStatus="#{status}"
            activity="Sleeping"/>
   <Project name="test2"
            lastBuildLabel="1"
-           lastBuildTime="2001-01-01T00:00:00Z"
+           lastBuildTime="#{Time.now - 1.hour}"
            lastBuildStatus="#{status}"
            activity="Sleeping"/>
 </Projects>
