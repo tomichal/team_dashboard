@@ -16,8 +16,14 @@ app.directive("ci", ["CiModel", function(CiModel) {
     function lastBuildStatusClass(last_build_status) {
       switch(last_build_status) {
         case 0:
+          if(scope.previousData.last_build_status == 1) {
+            alert('Fixed!')
+          }
           return "green";
         case 1:
+          if(scope.previousData.last_build_status == 0) {
+            alert('Broken!')
+          }
           return "red";
         case -1:
           return "gray";
