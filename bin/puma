@@ -10,7 +10,7 @@ PUMA_PID_FILE=tmp/pids/puma.pid
 if [ -n "$RAILS_ENV" ]; then
   ENV=$RAILS_ENV
 else
-  ENV=development
+  ENV=production
 fi
 
 # check if puma process is running
