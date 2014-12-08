@@ -9,16 +9,8 @@ module Test
       render(xml:
         <<-XML
 <Projects>
-  <Project name="test1"
-           lastBuildLabel="1"
-           lastBuildTime="#{Time.now - 2.hours}"
-           lastBuildStatus="#{status}"
-           activity="Sleeping"/>
-  <Project name="test2"
-           lastBuildLabel="1"
-           lastBuildTime="#{Time.now - 1.hour}"
-           lastBuildStatus="#{status}"
-           activity="Sleeping"/>
+  <Project name="test1" lastBuildLabel="1" lastBuildTime="#{Time.now - 2.hours}" lastBuildStatus="#{status}" activity="Sleeping"/>
+  <Project name="test2" lastBuildLabel="1" lastBuildTime="#{Time.now - 1.hour}" lastBuildStatus="#{status}" activity="Sleeping"/>
 </Projects>
       XML
       )
