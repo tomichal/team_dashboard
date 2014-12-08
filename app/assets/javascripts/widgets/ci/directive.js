@@ -17,16 +17,12 @@ app.directive("ci", ["CiModel", function(CiModel) {
       switch(last_build_status) {
         case 0:
           if(typeof(scope.previousData) !== 'undefined' && scope.previousData.last_build_status == 1) {
-            var audio = $('#fixed-build')[0];
-            audio.load();
-            audio.play();
+            $(element).trigger("cifixed");
           }
           return "green";
         case 1:
           if(typeof(scope.previousData) !== 'undefined' && scope.previousData.last_build_status == 0) {
-            var audio = $('#broken-build')[0];
-            audio.load();
-            audio.play();
+            $(element).trigger("cibroken");
           }
           return "red";
         case -1:
