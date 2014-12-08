@@ -3,12 +3,13 @@ app.controller("WidgetEditCtrl", ["$scope", "$compile", "dialog", "widget", "Wid
   $scope.templateUrl = "templates/widgets/" + widget.kind + "/edit.html";
   $scope.customFieldsTemplate = $("#templates-custom_fields-" + widget.kind).html();
 
-  $scope.widget               = widget;
+  $scope.widget = widget;
 
-  $scope.updateIntervals      = EditorFormOptions.updateIntervals;
-  $scope.periods              = EditorFormOptions.periods;
-  $scope.sizes                = EditorFormOptions.sizes;
-  $scope.sources              = Sources.availableSources($scope.widget.kind);
+  $scope.yesNo = EditorFormOptions.yesNo;
+  $scope.updateIntervals = EditorFormOptions.updateIntervals;
+  $scope.periods = EditorFormOptions.periods;
+  $scope.sizes = EditorFormOptions.sizes;
+  $scope.sources = Sources.availableSources($scope.widget.kind);
 
   function setValidity(field, error) {
     console.log($scope.form[field])
