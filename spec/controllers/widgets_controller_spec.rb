@@ -23,7 +23,7 @@ describe Api::WidgetsController do
     end
 
     it "should respond with json content on failure" do
-      @request.env['RAW_POST_DATA'] = FactoryGirl.attributes_for(:widget, :name => nil, :dashboard => @dashboard).to_json
+      @request.env['RAW_POST_DATA'] = FactoryGirl.attributes_for(:widget, name: "").to_json
       post :create, :dashboard_id => @dashboard.id, :format => :json
       assert_response :unprocessable_entity
       result = JSON.parse(@response.body)
@@ -98,7 +98,7 @@ describe Api::WidgetsController do
     end
 
     it "should return json error response on failure" do
-      @widget.name = nil
+      @widget.name = ""
       @request.env['RAW_POST_DATA'] = @widget.to_json
       post :update, :dashboard_id => @dashboard.id, :id => @widget.id, :format => :json
       assert_response :unprocessable_entity

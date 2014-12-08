@@ -3,6 +3,7 @@ class Widget < ActiveRecord::Base
 
   serialize :settings
 
+  before_validation :set_attribute_defaults
   validates :name, :kind, :update_interval, :dashboard_id, :presence => true
   validate :validate_source_attributes, if: -> { source.present? }
 
@@ -36,20 +37,22 @@ class Widget < ActiveRecord::Base
 
   protected
 
-  def validate_source_attributes
-    source_plugins = Sources[Sources.widget_type_to_source_type(kind)]
-    source_attrs   = source_plugins.fetch(source)
-    attrs          = source_attrs.fetch(:custom_fields) + source_attrs.fetch(:default_fields)
-    attrs.each do |field|
-      if field[:mandatory]
-        errors.add(field[:name], "#{field[:name]} is a required field") unless settings[field[:name].to_sym].present?
+    def validate_source_attributes
+      source_plugins = Sources[Sources.widget_type_to_source_type(kind)]
+      source_attrs   = source_plugins.fetch(source)
+      attrs          = source_attrs.fetch(:custom_fields) + source_attrs.fetch(:default_fields)
+      attrs.each do |field|
+        if field[:mandatory]
+          errors.add(field[:name], "#{field[:name]} is a required field") unless settings[field[:name].to_sym].present?
+        end
       end
     end
-  end
 
-  def set_defaults
-    self.name ||= kind.titleize
-    self.update_interval ||= 10
-  end
+    def set_defaults
+      self.update_interval ||= 10
+    end
 
+    def set_attribute_defaults
+      self.name ||= kind.titleize
+    end
 end
