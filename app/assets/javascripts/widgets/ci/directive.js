@@ -17,12 +17,12 @@ app.directive("ci", ["CiModel", function(CiModel) {
       switch(last_build_status) {
         case 0:
           if(typeof(scope.previousData) !== 'undefined' && scope.previousData.last_build_status == 1) {
-            $(element).trigger("cifixed");
+            $(element).trigger($.Event("cifixed", { data: scope }));
           }
           return "green";
         case 1:
           if(typeof(scope.previousData) !== 'undefined' && scope.previousData.last_build_status == 0) {
-            $(element).trigger("cibroken");
+            $(element).trigger($.Event("cibroken", { data: scope }));
           }
           return "red";
         case -1:

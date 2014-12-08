@@ -2,7 +2,7 @@ var FIXED_COLOR = "#8dc256";
 var BROKEN_COLOR = "#d4666f";
 
 
-$(document).on('cifixed', function(){
+$(document).on('cifixed', function(e){
   // Play audio.
   var audio = $('#fixed-build')[0];
   audio.load();
@@ -14,7 +14,7 @@ $(document).on('cifixed', function(){
   }
 });
 
-$(document).on('cibroken', function(){
+$(document).on('cibroken', function(e){
   // Play audio.
   var audio = $('#broken-build')[0];
   audio.load();
