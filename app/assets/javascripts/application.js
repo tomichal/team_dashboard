@@ -14,6 +14,7 @@
 //= require underscore
 
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require jquery.gridster
 

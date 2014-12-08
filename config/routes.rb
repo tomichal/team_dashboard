@@ -1,5 +1,9 @@
 TeamDashboard::Application.routes.draw do
 
+  namespace :test do
+    get "ci/jenkins/cc.xml" => "ci#jenkins"
+  end
+
   namespace :api do
     resources :dashboards do
       resources :widgets

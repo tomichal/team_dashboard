@@ -45,11 +45,17 @@ app.factory("EditorFormOptions", function() {
     { value: "average",   label: "Average" }
   ];
 
+  var yesNo = [
+    { value: true, label: "Yes" },
+    { value: false, label: "No" }
+  ];
+
   return {
     updateIntervals: updateIntervals,
     periods: periods,
     sizes: sizes,
     graphTypes: graphTypes,
-    aggregate_functions: aggregate_functions
+    aggregate_functions: aggregate_functions,
+    yesNo: yesNo
   };
 });

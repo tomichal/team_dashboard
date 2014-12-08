@@ -16,8 +16,18 @@ app.directive("ci", ["CiModel", function(CiModel) {
     function lastBuildStatusClass(last_build_status) {
       switch(last_build_status) {
         case 0:
+          if (typeof(scope.previousData) !== 'undefined' && scope.previousData.last_build_status == 1) {
+            if (scope.widget.raise_alert === true) {
+              $(element).trigger($.Event("cifixed"));
+            }
+          }
           return "green";
         case 1:
+          if (typeof(scope.previousData) !== 'undefined' && scope.previousData.last_build_status == 0) {
+            if (scope.widget.raise_alert === true) {
+              $(element).trigger($.Event("cibroken"));
+            }
+          }
           return "red";
         case -1:
           return "gray";
