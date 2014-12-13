@@ -24,4 +24,3 @@ Gemfile.local.lock
 passenger-standalone.json
 config/initializers/rubymine_passenger_debug.rb
 config/initializers/delayed_job_silencer.rb
-
