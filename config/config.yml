@@ -1,6 +1,6 @@
 defaults: &defaults
   jenkins:
-    url: "https://jenkins-hzn.eng.vmware.com/jenkins/view/View/"
+    url: "https://desktop-ci.eng.vmware.com/"
     projects:
       - view-acceptance-tests
       - view-mfw-compile-and-unit-test
