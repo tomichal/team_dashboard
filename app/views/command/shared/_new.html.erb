@@ -1,0 +1,8 @@
+<div class="command-controls">
+  <%= form_for @command, url: command_path, remote: true do |f| %>
+    <%= f.text_field :text %>
+    <%= f.submit "Execute", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= button_tag "Command", id: "command-btn", class: "btn" %>
+</div>

@@ -9,6 +9,7 @@ public/assets/
 config/secrets.yml
 config/database.yml
 node_modules
+command.js
 
 #
 # Local dev environment files

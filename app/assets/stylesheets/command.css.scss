@@ -1,0 +1,12 @@
+.command-controls {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  form, input, button {
+    display: inline;
+    margin: 0;
+  }
+  form input[type="text"] {
+    width: 500px;
+  }
+}

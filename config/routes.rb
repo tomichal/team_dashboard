@@ -1,4 +1,5 @@
 TeamDashboard::Application.routes.draw do
+  resource :command, only: [:show, :create], controller: :command
 
   namespace :test do
     get "ci/jenkins/cc.xml" => "ci#jenkins"
