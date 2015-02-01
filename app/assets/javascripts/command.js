@@ -1,5 +1,5 @@
 $(function () {
-  var INTERVAL = 4000;
+  var INTERVAL = 3000;
   var $form = $('form#new_command');
 
   $form.toggle(false);
