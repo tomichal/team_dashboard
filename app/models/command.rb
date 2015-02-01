@@ -1,7 +1,7 @@
 class Command
   include ActiveModel::Model
 
-  attr_accessor :text
+  attr_accessor :text, :id
 
   delegate :exists?, to: :class
 
@@ -22,7 +22,8 @@ class Command
     end
 
     def find
-      new(text: File.read(PATH)) if exists?
+      new(id: File.mtime(PATH).strftime("%Y%M%d%H%m%S"),
+          text: File.read(PATH)) if exists?
     end
   end
 

