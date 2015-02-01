@@ -7,5 +7,9 @@
   <% end %>
 
   <a class="close btn right">x</a>
-  <%= button_to "Reload All Clients", command_path(command: { text: "window.history.go();" }), remote: true, data: { method: :post }, class: "btn btn-primary right" %>
+  <%= button_to "Reload All Clients",
+                command_path(command: { text: "document.location.reload(true);" }),
+                remote: true,
+                data: { method: :post },
+                class: "btn btn-primary right" %>
 </div>
