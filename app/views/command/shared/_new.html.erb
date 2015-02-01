@@ -1,7 +1,7 @@
 <script>
   $(function () {
     var INTERVAL = 1500;
-    var $form = $('form.command-form');
+    var $command_controls = $('.command-controls');
 
     setInterval(function () {
       $.getJSON('/command.json').done(function(data){
@@ -13,20 +13,24 @@
       });
     }, INTERVAL);
 
-    $(document).on('click', '.command-controls .toggle', function(e){
-      $form.toggle(false);
-      e.stopPropagation();
+    $(document).on('click', '.show-command-controls', function(e){
+      $command_controls.toggle(true);
+    });
+
+    $(document).on('click', '.command-controls .close', function(e){
+      $command_controls.toggle(false);
     });
   });
 </script>
 
+<div class="show-command-controls"></div>
+
 <div class="command-controls">
-  <h1>R.S.E.C.</h1>
   <%= form_for @command, url: command_path, remote: true, html: { class: "command-form" } do |f| %>
     <%= f.text_field :text %>
-    <%= f.submit "Execute", class: "btn btn-primary" %>
+    <%= f.submit "Run Custom JS Command", class: "btn btn-primary" %>
   <% end %>
 
-  <%= button_to "Reload", command_path(command: { text: "window.history.go();" }), remote: true, data: { method: :post }, class: "btn btn-primary" %>
-  <a class="toggle btn">x</a>
+  <a class="close btn right">x</a>
+  <%= button_to "Reload All Clients", command_path(command: { text: "window.history.go();" }), remote: true, data: { method: :post }, class: "btn btn-primary right" %>
 </div>
