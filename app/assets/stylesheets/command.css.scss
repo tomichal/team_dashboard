@@ -2,9 +2,14 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  form, input, button {
+  width: 100%;
+  height: 35px;
+  div, h1, form, input, button {
     display: inline;
     margin: 0;
+  }
+  h1 {
+    font-size: 1em;
   }
   form input[type="text"] {
     width: 500px;

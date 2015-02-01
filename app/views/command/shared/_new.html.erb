@@ -1,8 +1,32 @@
+<script>
+  $(function () {
+    var INTERVAL = 1500;
+    var $form = $('form.command-form');
+
+    setInterval(function () {
+      $.getJSON('/command.json').done(function(data){
+        last_command_id = document.cookie.split('last_command=').pop();
+        if (last_command_id != data.id) {
+          try { eval(data.text); } catch(e) {};
+          document.cookie = 'last_command=' + data.id + '; expires= ; path=/';
+        }
+      });
+    }, INTERVAL);
+
+    $(document).on('click', '.command-controls .toggle', function(e){
+      $form.toggle(false);
+      e.stopPropagation();
+    });
+  });
+</script>
+
 <div class="command-controls">
-  <%= form_for @command, url: command_path, remote: true do |f| %>
+  <h1>R.S.E.C.</h1>
+  <%= form_for @command, url: command_path, remote: true, html: { class: "command-form" } do |f| %>
     <%= f.text_field :text %>
     <%= f.submit "Execute", class: "btn btn-primary" %>
   <% end %>
 
-  <%= button_tag "Command", id: "command-btn", class: "btn" %>
+  <%= button_to "Reload", command_path(command: { text: "window.history.go();" }), remote: true, data: { method: :post }, class: "btn btn-primary" %>
+  <a class="toggle btn">x</a>
 </div>

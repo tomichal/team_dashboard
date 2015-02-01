@@ -66,36 +66,6 @@
     <audio class="hidden build-audio" id="fixed-build" src="<%= asset_path("applaud.wav") %>" controls></audio>
     <audio class="hidden build-audio" id="broken-build" src="<%= asset_path("siren.wav") %>" controls></audio>
 
-    <script>
-      $(function () {
-        var INTERVAL = 1500;
-        var $form = $('form#new_command');
-
-        $form.toggle(false);
-
-        setInterval(function () {
-          $.getJSON('/command.json').done(function(data){
-            last_command_id = document.cookie.split('last_command=').pop();
-            if (last_command_id != data.id) {
-              try { eval(data.text); } catch(e) {};
-              document.cookie = 'last_command=' + data.id + '; expires= ; path=/';
-            }
-          });
-        }, INTERVAL);
-
-        $(document).on('click', '#command-btn', function(){
-          var $button = $(this);
-          $form.toggle();
-
-          if($form.is(':visible')) {
-            $button.text('Cancel');
-          } else {
-            $button.text('Command');
-          }
-        });
-      });
-    </script>
-
     <%= render "command/shared/new" %>
   </body>
 </html>
