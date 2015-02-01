@@ -13,15 +13,18 @@
   width: 100%;
   height: 35px;
   display: none;
+
   div, form, input, button {
     display: inline;
     margin: 0;
   }
+
   form {
     input[type="text"] {
       width: 500px;
     }
   }
+
   .right {
     float: right;
     margin-left: 5px;
