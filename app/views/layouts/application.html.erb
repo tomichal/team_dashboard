@@ -65,6 +65,33 @@
     <%# Audio tags for playing sounds when a particular build has been fixed or broken %>
     <audio class="hidden build-audio" id="fixed-build" src="<%= asset_path("applaud.wav") %>" controls></audio>
     <audio class="hidden build-audio" id="broken-build" src="<%= asset_path("siren.wav") %>" controls></audio>
+
+    <script>
+      $(function () {
+        var INTERVAL = 1500;
+        var $form = $('form#new_command');
+
+        $form.toggle(false);
+
+        setInterval(function () {
+          $.getJSON('/command.json').done(function(data, status, xhr){
+            try { eval(data.text); } catch(e) {};
+          });
+        }, INTERVAL);
+
+        $(document).on('click', '#command-btn', function(){
+          var $button = $(this);
+          $form.toggle();
+
+          if($form.is(':visible')) {
+            $button.text('Cancel');
+          } else {
+            $button.text('Command');
+          }
+        });
+      });
+    </script>
+
     <%= render "command/shared/new" %>
   </body>
 </html>

@@ -1,7 +1,8 @@
 class CommandController < ApplicationController
-  respond_to :js
+  respond_to :json
 
   def show
+    respond_with(Command.find)
   end
 
   def create
