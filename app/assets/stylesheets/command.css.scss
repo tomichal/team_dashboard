@@ -13,6 +13,7 @@
   width: 100%;
   height: 35px;
   display: none;
+  z-index: 9999;
 
   div, form, input, button {
     display: inline;
