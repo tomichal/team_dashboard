@@ -15,14 +15,7 @@ module Sources
       include HttpProxyResolver
 
       def get(options = {})
-        data = super
-        if data.is_a?(Hash)
-          widget = Widget.find(options.fetch(:widget_id))
-          negate = widget.settings[:negate]
-          data[:value] = !data[:value] if (negate != nil && negate)
-          data
-        end
-        data
+        negate(super, Widget.find(options.fetch(:widget_id)))
       end
     end
   end

@@ -35,10 +35,10 @@ module Sources
         response.each do |item|
           if item["name"] == check_name
             if item["isUp"] == true
-              return { :value => true }
+              return negate({ :value => true }, widget)
             else
               Rails.logger.warn("Uptime: '#{check_name}' check is down!")
-              return { :value => false }
+              return negate({ :value => false }, widget)
             end
           end
         end

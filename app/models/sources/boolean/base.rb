@@ -28,6 +28,15 @@ module Sources
       def get(options = {})
       end
 
+      protected
+
+      def negate(data, widget)
+        if data.is_a?(Hash)
+          data[:value] = !data[:value] if widget.settings[:negate]
+          data
+        end
+        data
+      end
     end
   end
 end

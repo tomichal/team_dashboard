@@ -9,7 +9,7 @@ module Sources
       def get(options = {})
         widget = Widget.find(options.fetch(:widget_id))
         cmd    = widget.settings.fetch(:command)
-        { :value => execute_command(cmd) }
+        negate({ :value => execute_command(cmd) }, widget)
       end
 
       private

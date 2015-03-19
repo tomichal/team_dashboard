@@ -17,7 +17,7 @@ module Sources
         widget = Widget.find(options.fetch(:widget_id))
         settings = widget.settings
         connection = SimplePingdomInterface.new(settings.fetch(:check))
-        { :value => connection.status }
+        negate({ :value => connection.status }, widget)
       end
 
     end
