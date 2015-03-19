@@ -18,7 +18,10 @@ module HttpProxyResolver
     end
 
     if value_path.present?
-      { :value => resolve_value(response_body, value_path) }
+      value = resolve_value(response_body, value_path)
+      negate = widget.settings[:negate]
+      value = !value if (negate && negate != nil)
+      { :value => value }
     else
       response_body
     end
